@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class SubmissionsController extends Controller
 {
-    public function adminFormDetails($id) {
+    public function adminFormDetails($admin_id, $form_id) {
 
-        if (Auth::user() and Auth::user()->id == $id) {
+        if (Auth::user() and Auth::user()->id == $admin_id) {
             return response()->json([
                 "message" => "Success",
-                "admin_forms" => Submission::select("data", "created_at")->where("form_id", $id)->get()
+                "form_details" => Submission::select("data", "created_at")->where("form_id", $form_id)->get()
             ], 201);
         }
 
