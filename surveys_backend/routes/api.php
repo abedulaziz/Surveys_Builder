@@ -39,3 +39,4 @@ Route::get("/admin/forms/{admin_id}/{form_id}", [SubmissionsController::class, "
 
 // APIs for user
 Route::get("user/forms/{user_id}", [FormsController::class, "listForms"]);
+Route::post("user/forms/{user_id}/{form_id}", [SubmissionsController::class, "submitForm"]);
