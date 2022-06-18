@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Form;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class FormsController extends Controller
 {
@@ -41,6 +42,33 @@ class FormsController extends Controller
             return response()->json([
                 "message" => "Success",
             ], 201);
+        }
+
+        return response()->json([
+            "message" => "You are unauthorised"
+        ]);
+    }
+
+    public function listForms($user_id) {
+
+        if (Auth::user() and Auth::id() == $user_id) {
+
+            $data = array();
+
+            foreach (Form::all() as $form) {
+                $formOwner = User::find($form->admin_id);
+
+                $formData = (object)[];
+                $formData->admin = $formOwner->fname . " " . $formOwner->lname;
+                $formData->body = $form->HTML_data;
+
+                $data[] = $formData;
+            }
+
+            return response()->json([
+                "message" => "Success",
+                "data" => $data
+            ]);
         }
 
         return response()->json([

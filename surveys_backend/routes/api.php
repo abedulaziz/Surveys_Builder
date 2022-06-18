@@ -35,3 +35,7 @@ Route::group(['middleware' => 'api'], function($router) {
 Route::get("/admin/forms/{admin_id}", [FormsController::class, "getAdminForms"]);
 Route::post("/admin/forms/{admin_id}/create-form", [FormsController::class, "createForm"]);
 Route::get("/admin/forms/{admin_id}/{form_id}", [SubmissionsController::class, "adminFormDetails"]);
+
+
+// APIs for user
+Route::get("user/forms/{user_id}", [FormsController::class, "listForms"]);
