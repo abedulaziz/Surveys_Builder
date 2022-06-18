@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JWTController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\SubmissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::group(['middleware' => 'api'], function($router) {
 
 // APIs for admin
 Route::get("/admin/forms/{id}", [FormsController::class, "getAdminForms"]);
+Route::get("/admin/forms/{id}/form-details", [SubmissionsController::class, "adminFormDetails"]);
