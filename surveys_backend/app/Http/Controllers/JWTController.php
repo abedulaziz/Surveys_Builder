@@ -31,7 +31,7 @@ class JWTController extends Controller
             'fname' => 'required|string|min:2|max:100',
             'lname' => 'required|string|min:2|max:100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+            'password' => 'required|string|min:6',
             'gender' => 'required|string',
         ]);
 
@@ -51,7 +51,6 @@ class JWTController extends Controller
 
         return response()->json([
             'message' => 'User successfully registered',
-            'user' => $user
         ], 201);
     }
 
@@ -75,7 +74,11 @@ class JWTController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return response()->json([
+            "message" => "Success",
+            "user_type" => Auth::user()->type,
+            "access_token" => $token
+        ]);
     }
 
     /**
