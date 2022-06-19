@@ -1,10 +1,10 @@
-import React from 'react'
 
-export const header = () => {
+const header = () => {
   return (
     <header>
-
       <div className='container'>
+      <div className="content">
+
         <div className='logo'>
           Surveys maker
         </div>
@@ -16,8 +16,11 @@ export const header = () => {
             Create form
           </div>
         </div>
+
       </div>
-      
+      </div>
     </header>
   )
 }
+
+export default header
