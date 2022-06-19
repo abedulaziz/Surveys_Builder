@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Kanit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap');
 
 :root {
   --color-theme: #3CE7BD;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -13,7 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   position: relative;
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Fredoka', sans-serif;
 }
 
 code {
@@ -54,4 +58,78 @@ header .content .nav_links > div {
 header .content .nav_links > div:last-child {
   padding-right: 0;
   margin-right: 0;
+}
+
+.page_head {
+  text-align: center;
+  font-weight: 400;
+}
+
+
+/* form styles */
+.form_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form_wrapper form {
+  background-color: var(--color-theme);
+  padding: 20px;
+  color: #FFF;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.form_wrapper form .form_header_wrapper {
+  margin-bottom: 30px;
+}
+
+.form_wrapper form .form_header_wrapper .form_head{
+  font-size: 30px;
+  font-weight: 400;
+  margin: 10px 0 4px;
+}
+
+.form_wrapper form .form_header_wrapper .form_desc {
+  margin: 0;
+}
+
+.form_wrapper form input {
+  padding: 15px;
+  color: rgb(113, 113, 113);
+  border-radius: 3px;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.form_wrapper form .submit_wrapper {
+  text-align: center;
+}
+
+.form_wrapper form .submit_wrapper button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #bdffef;
+  font-weight: 400;
+  font-size: 15px;
+  color: #8d8d8d;
+  cursor: pointer;
+  box-shadow: 0 0 15px;
+}
+
+.form_wrapper form .redirect {
+  margin: 20px 0 0;
+  text-align: center;
+}
+
+.form_wrapper form .redirect p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.form_wrapper form .redirect p a {
+  color: #8d8d8d;
 }
