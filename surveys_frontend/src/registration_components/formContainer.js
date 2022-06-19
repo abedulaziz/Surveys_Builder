@@ -1,9 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react';
 import FormHead from './formHead';
 import InputType from './inputType';
 import SubmitButton from './submitButton';
 
-const formContainer = (props) => {
+
+
+const FormContainer = (props) => {
+  const emailRef = React.createRef();
+  const passwordRef = React.createRef();
+
+  useEffect(() => {
+    props.inputsInfo(emailRef.current, passwordRef.current)
+  }, []);
+
   return (
 
     <div className='container'>
@@ -13,8 +22,9 @@ const formContainer = (props) => {
         <form className='login_form'>
           <FormHead head="Log in" desc="sign-in and access our surveys"/>
 
-          <InputType type="text" placeholder="Email"/>
-          <InputType type="password" placeholder="Password"/>
+          {/* <InputType type="text" placeholder="Email"/> */}
+          <InputType ref={emailRef} type="text" placeholder="Email" />
+          <InputType ref={passwordRef} type="password" placeholder="Password"/>
 
           <SubmitButton buttonValue="Sign in" onSubmitForm={props.onSubmitForm}/>
           <div className='redirect'>
@@ -29,4 +39,4 @@ const formContainer = (props) => {
   )
 }
 
-export default formContainer
+export default FormContainer

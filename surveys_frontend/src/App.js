@@ -5,21 +5,42 @@ import axios from 'axios';
 
 
 function App() {
+  let emailInp;
+  let passwordInp;
+
+  const getInputsInfo = (email, password) => {
+    emailInp = email
+    passwordInp = password
+  }
 
   const signIn = async(e) => {
     e.preventDefault();
-    
-    const signInReq = await axios({
-      method: "post",
-      url: "http://127.0.0.1:8000/api/login",
-      data: {
-        email: "clindgren@example.com",
-        password: "password"
-      }
-    })
+    if (emailInp.value && passwordInp.value) {
+      try {
+        const signInReq = await axios({
+          method: "post",
+          url: "http://127.0.0.1:8000/api/login",
+          data: {
+            email: emailInp.value,
+            password: passwordInp.value
+          }
+        })
+        console.log(signInReq)
+        localStorage.setItem("access_token", signInReq.data.access_token)
 
-    console.log(signInReq)
-    localStorage.setItem("access_token", signInReq.data.access_token)
+      } catch(err) {
+        if (err.response.status == 422) {
+          alert("Unvalid data")
+        }
+        else if(err.response.status == 401) {
+          alert("Account not exists")
+        }
+      }
+
+    }
+    else alert("Please input all fields")
+    
+
   }
 
   return (
@@ -33,7 +54,7 @@ function App() {
       </Head>
 
       <main>
-        <FormContainer onSubmitForm={signIn}/>
+        <FormContainer onSubmitForm={signIn} inputsInfo={getInputsInfo}/>
       </main>
 
     </div>
