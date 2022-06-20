@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&family=Fredoka:wght@300;400;600&display=swap');
 
 :root {
   --color-theme: #3CE7BD;
@@ -108,7 +108,8 @@ header .content .nav_links > div:last-child {
   text-align: center;
 }
 
-.form_wrapper form .submit_wrapper button {
+/* .form_wrapper form .submit_wrapper button { */
+button.submitBut {
   padding: 10px 15px;
   border: none;
   border-radius: 3px;
@@ -117,7 +118,7 @@ header .content .nav_links > div:last-child {
   font-size: 15px;
   color: #8d8d8d;
   cursor: pointer;
-  box-shadow: 0 0 15px;
+  box-shadow: 0 0 10px;
 }
 
 .form_wrapper form .redirect {
@@ -132,4 +133,104 @@ header .content .nav_links > div:last-child {
 
 .form_wrapper form .redirect p a {
   color: #8d8d8d;
+}
+
+/* create form page */
+#createFormPanel {
+  margin-top: 20px;
+}
+
+#createFormPanel .container {
+  display: flex;
+}
+
+#createFormPanel .createFormWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+form#createForm {
+  width: 400px;
+  padding: 20px;
+  box-shadow: 2px 2px 10px rgb(130, 130, 130);
+  width: 48%;
+}
+
+form#createForm h3 {
+  margin: 0 0 20px;
+}
+
+form#createForm input {
+  padding: 10px;
+  border: 2px solid var(--color-theme);
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#createFormPanel .createInput {
+  width: 48%;
+  padding: 10px;
+}
+
+#createFormPanel .createInput > div {
+  margin-bottom: 20px;
+}
+
+#createFormPanel .createInput label {
+  margin-right: 10px;
+}
+
+#createFormPanel .createInput select {
+  width: 100px;
+  background-color: var(--color-theme);
+  border: 2px solid rgb(157, 157, 157);
+  padding: 5px;
+  color: #FFF;
+  font-size: 14px;
+}
+
+#createFormPanel .createInput input {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid var(--color-theme);
+
+}
+
+/* footer */
+footer {
+  background-color: var(--color-theme);
+  color: #FFF;
+  padding: 20px 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .social-media {
+  display: flex;
+}
+
+footer .social-media > div:not(:last-child) {
+  margin-right: 20px;
+}
+
+footer .social-media a {
+  color: #FFF;
+}
+
+footer .social-media i {
+  color: #FFF;
+}
+
+footer .social-media i:hover {
+  color: var(--theme-color);
+  transition: color .3s ease;
 }
