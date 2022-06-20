@@ -1,35 +1,61 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useState, useRef} from 'react'
 import Head from "react-helmet";
 import Header from './layout_components/header';
 import Footer from './layout_components/footer';
 import SubmitButton from './registration_components/submitButton';
-import InputType from './registration_components/inputType'
-import { createRoot } from 'react-dom/client';
+import InputType from './registration_components/inputType';
+import axios from 'axios';
+import header from './layout_components/header';
 
 
 const CreateForm = () => {
   const inputsRef = useRef(null);
+  const formTitle = useRef(null);
+  const form = useRef(null);
+
   const addQuesRef = React.createRef();
   const submitFormRef = React.createRef();
 
   const quesType = useRef(null);
   const quesContent = useRef(null);
 
-  let addQues;
+  const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    
-    addQues = () => {
-      console.log(inputsRef, addQuesRef, submitFormRef, quesType, quesContent);
-      
-      if (quesContent.current.value) {
-        
-      }
+  const addQuestion = () => {
+    if (quesContent.current.value)
+    setQuestions([...questions, {type: quesType.current.value, placeholder: quesContent.current.value}])
+
+
+    quesType.current.defaultValue = "text"
+    quesContent.current.value = "";
+  }
+
+  // submit form
+  const submitForm = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    if (inputsRef.current.children.length) {
+
+      // try {
+        let user_id = localStorage.getItem('user_id')
+
+        const postFormReq = await axios({
+          method: "post",
+          url: `http://127.0.0.1:8000/api/admin/forms/${user_id}/create-form`,
+          data: {
+            title: formTitle.current.value,
+            HTML_data: form.current.outerHTML
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
+          }
+        })
+
+        console.log(postFormReq)
+
+      // } 
     }
-    const root = createRoot(inputsRef.current)
-    root.render(<InputType type={quesType.current.value} placeholder={quesContent.current.value} />)
-  })
-  console.log(addQues);
+  }
 
   return (
     <>
@@ -45,13 +71,16 @@ const CreateForm = () => {
       <div className='container'>
         <div className='createFormWrapper'>
 
-          <form id='createForm'>
-            <h3>Form title</h3>
-            <div ref={inputsRef} className='inputs'>
-              <input type="text" placeholder="First name" />
+          <form ref={form} id='createForm'>
+            <input ref={formTitle} id='formTitle' type="text" placeholder='Form title'/>
+            <div ref={inputsRef} className='inputs' id='inputs'>
+
+              {questions.map((question, i) => (
+                <InputType key={i} type={question.type} placeholder={question.placeholder} />
+              ))}
 
             </div>
-            <SubmitButton ref={submitFormRef} buttonValue="Submit form"/>
+            <SubmitButton ref={submitFormRef} buttonValue="Submit form" onSubmitForm={submitForm}/>
           </form>
 
           <div className='createInput'>
@@ -72,7 +101,7 @@ const CreateForm = () => {
               <label htmlFor='questionContent'>Question Content:</label>
               <input ref={quesContent} type="text" placeholder='Type your question'/>
             </div>
-            <SubmitButton ref={addQuesRef} buttonValue="Add question" onSubmitForm={addQues} />
+            <SubmitButton ref={addQuesRef} buttonValue="Add question"  onSubmitForm={addQuestion} />
           </div>
 
         </div>

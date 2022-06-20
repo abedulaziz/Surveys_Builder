@@ -157,6 +157,13 @@ form#createForm {
   width: 48%;
 }
 
+#formTitle {
+  border: none !important;
+  font-size: 20px;
+  border-bottom: 2px solid var(--color-theme) !important;
+  
+}
+
 form#createForm h3 {
   margin: 0 0 20px;
 }
