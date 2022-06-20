@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 
 const header = () => {
   return (
@@ -9,12 +10,12 @@ const header = () => {
           Surveys maker
         </div>
         <div className='nav_links'>
-          <div className='forms'>
-            Forms
-          </div>
-          <div className='create_form'>
+          <Link to="/admin"><div className='forms'>
+            My forms
+          </div></Link>
+          <Link to="admin/create-form"><div className='create_form'>
             Create form
-          </div>
+          </div></Link>
         </div>
 
       </div>

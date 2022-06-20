@@ -50,7 +50,12 @@ header .content .nav_links {
   display: flex;
 }
 
-header .content .nav_links > div {
+header .content .nav_links a {
+  color: #000;
+  text-decoration: none;
+}
+
+header .content .nav_links a > div {
   padding:0 10px;
   margin-right: 25px;
 }
