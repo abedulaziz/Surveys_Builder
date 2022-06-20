@@ -135,6 +135,49 @@ button.submitBut {
   color: #8d8d8d;
 }
 
+
+/* list admin forms page */
+.admin_forms { 
+  background-color: var(--color-theme);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.admin_forms .forms_head h2 {
+  text-align: center;
+  color: #FFF;
+}
+
+.admin_forms .forms_list .form {
+  background-color: #FFF;
+  box-shadow: 0 0 5px gray;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin_forms .forms_list .form .title {
+  margin: 0 0 3px;
+  font-size: 20px;
+}
+
+.admin_forms .forms_list .form .created_at {
+  margin: 0;
+  font-size: 14px;
+  color: gray;
+}
+
+.admin_forms .forms_list .form .submits_num {
+  color: var(--color-theme)
+}
+
+.admin_forms .submit_wrapper{
+  text-align: center;
+}
+
+
 /* create form page */
 #createFormPanel {
   margin-top: 20px;
