@@ -141,6 +141,7 @@ button.submitBut {
   background-color: var(--color-theme);
   padding: 20px;
   margin-top: 20px;
+  border-radius: 2px;
 }
 
 .admin_forms .forms_head h2 {
@@ -177,6 +178,9 @@ button.submitBut {
   text-align: center;
 }
 
+.admin_forms .submit_wrapper button {
+  width: 100%;
+}
 
 /* create form page */
 #createFormPanel {

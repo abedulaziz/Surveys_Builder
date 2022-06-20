@@ -3,13 +3,12 @@ import Head from './layout_components/header'
 import Footer from './layout_components/footer'
 import SubmitButton from './registration_components/submitButton'
 import AdminForm from './registration_components/adminForm'
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 const AdminHomepage = () => {
 
   const [listOfForms, setListOfForms] = useState([])
-
-  // const retrieveForms = async () => {
 
     let user_id = localStorage.getItem('user_id')
 
@@ -29,7 +28,6 @@ const AdminHomepage = () => {
         }
         else {
           const forms = grabFormsReq.data.admin_forms
-          console.log(forms);
           setListOfForms(forms)
     
         }
@@ -39,11 +37,6 @@ const AdminHomepage = () => {
       retrieveData()
 
     }, [])
-  // }
-  // retrieveForms()
-
-
-  // } 
 
 
   return (
@@ -63,7 +56,7 @@ const AdminHomepage = () => {
               ))}
             </div>
 
-            <SubmitButton buttonValue="Create a form"/>
+            <Link to="/admin/create-form"><SubmitButton buttonValue="Create a form"/></Link>
 
           </div>
         </div>
