@@ -5,7 +5,6 @@ import Footer from './layout_components/footer';
 import SubmitButton from './registration_components/submitButton';
 import InputType from './registration_components/inputType';
 import axios from 'axios';
-import header from './layout_components/header';
 
 
 const CreateForm = () => {

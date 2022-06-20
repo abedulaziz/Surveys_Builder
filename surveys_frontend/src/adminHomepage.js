@@ -1,9 +1,51 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Head from './layout_components/header'
 import Footer from './layout_components/footer'
 import SubmitButton from './registration_components/submitButton'
+import AdminForm from './registration_components/adminForm'
+import axios from 'axios';
 
-const adminHomepage = () => {
+const AdminHomepage = () => {
+
+  const [listOfForms, setListOfForms] = useState([])
+
+  // const retrieveForms = async () => {
+
+    let user_id = localStorage.getItem('user_id')
+
+    useEffect(() => {
+
+      const retrieveData = async() => {
+        const grabFormsReq = await axios({
+          method: "get",
+          url: `http://127.0.0.1:8000/api/admin/forms/${user_id}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
+          }
+        })
+    
+        if (grabFormsReq.data.message == "You are unauthorised") {
+          alert("You are unauthorised. Please login first")
+        }
+        else {
+          const forms = grabFormsReq.data.admin_forms
+          console.log(forms);
+          setListOfForms(forms)
+    
+        }
+        console.log(grabFormsReq)
+
+      }
+      retrieveData()
+
+    }, [])
+  // }
+  // retrieveForms()
+
+
+  // } 
+
+
   return (
     <>
       <Head />
@@ -16,20 +58,9 @@ const adminHomepage = () => {
             </div>
 
             <div className='forms_list'>
-              <div className='form'>
-                <div>
-                  <h4 className='title'>SEF Registration</h4>
-                  <p className='created_at'>11/0/2022</p>
-                </div>
-                <div className='submits'>Submits: <span className='submits_num'>32</span></div>
-              </div>
-              <div className='form'>
-                <div>
-                  <h4 className='title'>SEF Registration</h4>
-                  <p className='created_at'>11/0/2022</p>
-                </div>
-                <div className='submits'>Submits: <span className='submits_num'>32</span></div>
-              </div>
+              {listOfForms.map(form => (
+                <AdminForm key={form.id} title={form.title} created_at={form.created_at} />
+              ))}
             </div>
 
             <SubmitButton buttonValue="Create a form"/>
@@ -43,4 +74,4 @@ const adminHomepage = () => {
   )
 }
 
-export default adminHomepage
+export default AdminHomepage
